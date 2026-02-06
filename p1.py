@@ -8,7 +8,6 @@ for i in range(9):
     b=input()
     print("player 2 chose box "+b)
 
-    print(s)
 
-def grid(n):
+
 
