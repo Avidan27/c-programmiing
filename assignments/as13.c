@@ -1,0 +1,1 @@
+/*13. To accept a number from user and print digits of number in a reverse order.*/

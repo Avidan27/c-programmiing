@@ -7,3 +7,6 @@
 //put flag arugment in for loop to stop looping once a player wins
 
 //try to use dictionary to store all possible combinations
+
+//8-13
+//1-4

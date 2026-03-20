@@ -1,3 +1,7 @@
+/*
+14. To input binary number from user and convert it into decimal number.*/
+
+
 #include <stdio.h>
 #include <math.h>
 /* this is comment - enter a binary form user to convert into decimal*/
