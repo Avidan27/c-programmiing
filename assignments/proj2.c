@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include <ctype.h>
 
 #define MAX_BUSES 10
 
@@ -17,23 +16,6 @@ struct Bus {
     int route_safety;       
     char current_route[50];
 };
-
-// Convert string to lowercase
-void toLowerCase(char* str) {
-    for (int i = 0; str[i]; i++) {
-        str[i] = tolower(str[i]);
-    }
-}
-
-// Case-insensitive string comparison
-int strcasecmp_custom(const char* s1, const char* s2) {
-    char temp1[30], temp2[30];
-    strcpy(temp1, s1);
-    strcpy(temp2, s2);
-    toLowerCase(temp1);
-    toLowerCase(temp2);
-    return strcmp(temp1, temp2);
-}
 
 int getHourFromTime(char* time_str) {
     int hour;
@@ -66,17 +48,6 @@ void emergencySOS(int bus_id, char* current_location) {
     printf("✅ SOS Message Sent Successfully!\n");
     printf("   Help is on the way! Stay safe.\n");
     printf("📲 'EMERGENCY! Bus %d at %s. Send help!'\n", bus_id, current_location);
-}
-
-// Check if city exists in dataset (FIXED: now takes buses array as parameter)
-int cityExists(struct Bus* buses, int max_buses, char* city) {
-    for (int i = 0; i < max_buses; i++) {
-        if (strcasecmp_custom(buses[i].from_city, city) == 0 || 
-            strcasecmp_custom(buses[i].to_city, city) == 0) {
-            return 1;
-        }
-    }
-    return 0;
 }
 
 int main() {
@@ -136,29 +107,17 @@ int main() {
         printf("Enter source city: ");
         scanf("%s", source);
 
-        // FIXED: Pass buses array to cityExists
-        if (!cityExists(buses, MAX_BUSES, source)) {
-            printf("❌ No such city '%s' in dataset!\n", source);
-            continue;
-        }
-
         if (choice == 1) {
             printf("Enter destination city: ");
             scanf("%s", destination);
-
-            // FIXED: Pass buses array to cityExists
-            if (!cityExists(buses, MAX_BUSES, destination)) {
-                printf("❌ No such city '%s' in dataset!\n", destination);
-                continue;
-            }
 
             printf("\n%s → %s:\n", source, destination);
             printf("ID  Driver     Time       Safety  Status\n");
             printf("---------------------------------------\n");
 
             for (int i = 0; i < MAX_BUSES; i++) {
-                if (strcasecmp_custom(buses[i].from_city, source) == 0 && 
-                    strcasecmp_custom(buses[i].to_city, destination) == 0) {
+                if (strcmp(buses[i].from_city, source) == 0 && 
+                    strcmp(buses[i].to_city, destination) == 0) {
                     
                     int safety = calculateAdjustedSafety(buses[i]);
                     char status[20] = "Day";
@@ -198,18 +157,18 @@ int main() {
             int best_mumbai=-1, best_nashik=-1, best_kolhapur=-1;
 
             for (int i = 0; i < MAX_BUSES; i++) {
-                if (strcasecmp_custom(buses[i].from_city, source) == 0) {
+                if (strcmp(buses[i].from_city, source) == 0) {
                     int safety = calculateAdjustedSafety(buses[i]);
                     
-                    if (strcasecmp_custom(buses[i].to_city, "Mumbai") == 0) {
+                    if (strcmp(buses[i].to_city, "Mumbai") == 0) {
                         mumbai_cnt++; 
                         if (safety > best_mumbai) best_mumbai = safety;
                     }
-                    if (strcasecmp_custom(buses[i].to_city, "Nashik") == 0) {
+                    if (strcmp(buses[i].to_city, "Nashik") == 0) {
                         nashik_cnt++; 
                         if (safety > best_nashik) best_nashik = safety;
                     }
-                    if (strcasecmp_custom(buses[i].to_city, "Kolhapur") == 0) {
+                    if (strcmp(buses[i].to_city, "Kolhapur") == 0) {
                         kolhapur_cnt++; 
                         if (safety > best_kolhapur) best_kolhapur = safety;
                     }
@@ -219,7 +178,8 @@ int main() {
             if (mumbai_cnt > 0) printf("→ Mumbai: %d buses (Best %d/10)\n", mumbai_cnt, best_mumbai);
             if (nashik_cnt > 0) printf("→ Nashik: %d buses (Best %d/10)\n", nashik_cnt, best_nashik);
             if (kolhapur_cnt > 0) printf("→ Kolhapur: %d buses (Best %d/10)\n", kolhapur_cnt, best_kolhapur);
-            else printf("❌ No routes found from %s.\n", source);
+            if (mumbai_cnt == 0 && nashik_cnt == 0 && kolhapur_cnt == 0)
+                printf("❌ No routes found from %s.\n", source);
         }
     }
 

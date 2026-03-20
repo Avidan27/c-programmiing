@@ -115,7 +115,7 @@ int main() {
 
         if (choice != 1 && choice != 2 && choice != 3) {
             printf("❌ Invalid choice! Please enter 1, 2, 3, or 4.\n");
-            continue;
+            
         }
 
         if (choice == 3) {
