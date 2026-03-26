@@ -1,1 +1,1 @@
-/*15. To generate pseudo random numbers.*/
+/*15 To generate pseudo random numbers.*/

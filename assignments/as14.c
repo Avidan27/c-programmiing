@@ -1,5 +1,4 @@
-/*
-14. To input binary number from user and convert it into decimal number.*/
+/*14. To input binary number from user and convert it into decimal number.*/
 
 
 #include <stdio.h>
