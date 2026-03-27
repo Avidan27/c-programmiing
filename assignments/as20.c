@@ -1,0 +1,2 @@
+/*Write a C function to swap two numbers with and without pointers.
+*/

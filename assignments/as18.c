@@ -1,0 +1,2 @@
+/*Write a C program that accepts a string from user and perform following string operations — i. Calculate length of string ii. String reversal iii. Equality check of two strings iv. Check palindrome v. Check substring.
+*/

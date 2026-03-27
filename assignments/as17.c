@@ -1,0 +1,2 @@
+/*To accept the number of terms n finds the sum of sine series.
+*/
