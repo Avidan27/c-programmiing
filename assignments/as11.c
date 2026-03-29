@@ -19,18 +19,18 @@ int main(){
     switch(c){
         case 1:
         break;
-        printf("sq root is %lf",sqrt((double)a))
+        printf("sq root is %lf",sqrt((double)a));
         case 2:
-        prinftf("sqaure is")
+        prinftf("sqaure is %d",a*a);
         break;
-        printf()
+        printf();
 
         case 3:
-        printf("cube is ")
+        printf("cube is  %d",a*a*a);
         break;
 
         case 4:
-        printf("")
+        printf("");
         break;
 
         case 5:for(i=1;i<=a;i++){
