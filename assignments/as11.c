@@ -1,47 +1,79 @@
-/*11. To accept the number and compute:
-a) square root of number
-b) square of number
-c) cube of number
-d) check for prime
-e) factorial of number
-f) prime factors
-*/
 #include <stdio.h>
 #include <math.h>
+
 int main(){
-    print("input a number you want to calculate");
+    printf("Input a number you want to calculate: ");
     int a;
     scanf("%d",&a);
-    print("press 1 for sq root, 2 for square, 3 for cube,\n 4 to check if number is prime , 5 to calc its factorial,\n
-         6 to check its prime factors");
-        int c;
-        scanf("%d",&c);
+
+    printf("Press 1 for sq root, 2 for square, 3 for cube,\n");
+    printf("4 to check prime, 5 to calc factorial,\n");
+    printf("6 to check its prime factors\n");
+
+    int c;
+    scanf("%d",&c);
+
     switch(c){
+
         case 1:
-        break;
-        printf("sq root is %lf",sqrt((double)a));
+            printf("Square root is %.2lf\n", sqrt((double)a));
+            break;
+
         case 2:
-        prinftf("sqaure is %d",a*a);
-        break;
-        printf();
+            printf("Square is %d\n", a*a);
+            break;
 
         case 3:
-        printf("cube is  %d",a*a*a);
-        break;
+            printf("Cube is %d\n", a*a*a);
+            break;
 
-        case 4:
-        printf("");
-        break;
+        case 4: {
+            if(a <= 1){
+                printf("Number is NOT PRIME\n");
+                break;
+            }
 
-        case 5:for(i=1;i<=a;i++){
-    fact=fact*i;
+            int isPrime = 1;
+            for(int i = 2; i <= sqrt(a); i++){
+                if(a % i == 0){
+                    isPrime = 0;
+                    break;
+                }
+            }
+
+            if(isPrime)
+                printf("Number is PRIME\n");
+            else
+                printf("Number is NOT PRIME\n");
+
+            break;
+        }
+
+        case 5: {
+            long long fact = 1;
+            for(int i = 1; i <= a; i++){
+                fact *= i;
+            }
+            printf("Factorial is %lld\n", fact);
+            break;
+        }
+
+        case 6: {
+            int temp = a;  // preserve original number
+            printf("Prime factors of %d are:\n", a);
+
+            for(int i = 2; i <= temp; i++){
+                while(temp % i == 0){
+                    printf("%d ", i);
+                    temp /= i;
+                }
+            }
+            break;
+        }
+
+        default:
+            printf("Invalid choice\n");
     }
-    printf("%d",fact);
-    break;
-        
 
-        case 6:
-        printf()
-        break;
-    }
+    return 0;
 }
