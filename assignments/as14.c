@@ -1,29 +1,19 @@
 #include <stdio.h>
 #include <math.h>
+int main() {
+    long long binaryNum;
+    int decimalNum = 0, i = 0, rem;
 
-int main(){
     printf("Enter a binary number: ");
+    scanf("%lld", &binaryNum);
 
-    int a;
-    scanf("%d", &a);
-
-    int sum = 0, i = 0;
-
-    while(a != 0){
-        int digit = a % 10;
-
-        if(digit != 0 && digit != 1){
-            printf("Invalid binary number!\n");
-            return 0;
-        }
-
-        sum += digit * pow(2, i);
-
-        a = a / 10;
+    while (binaryNum != 0) {
+        rem = binaryNum % 10;
+        decimalNum += rem * pow(2, i);
+        binaryNum /= 10;
         i++;
     }
 
-    printf("Decimal equivalent = %d\n", sum);
-
+    printf("Decimal equivalent: %d\n", decimalNum);
     return 0;
-}
+}   

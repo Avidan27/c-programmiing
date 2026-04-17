@@ -1,48 +1,32 @@
 /*Write a C program to accept student details and display their result using an array of structures.*/
 
-#include <stdio.h>
-
 struct Student {
-    int roll;
     char name[50];
-    float marks1, marks2, marks3;
-    float total, percentage;
+    int roll_number;
+    float marks;
 };
 
 int main() {
     int n;
 
-    printf("Enter number of students: ");
+    printf("Enter the number of students: ");
     scanf("%d", &n);
 
-    struct Student s[n];
+    struct Student students[n];
 
-    // Input
-    for(int i = 0; i < n; i++) {
-        printf("\nEnter details of student %d:\n", i+1);
-
-        printf("Roll number: ");
-        scanf("%d", &s[i].roll);
-
+    for (int i = 0; i < n; i++) {
+        printf("Enter details for student %d:\n", i + 1);
         printf("Name: ");
-        scanf("%s", s[i].name);  // NOTE: no spaces allowed
-
-        printf("Enter marks of 3 subjects: ");
-        scanf("%f %f %f", &s[i].marks1, &s[i].marks2, &s[i].marks3);
-
-        // Calculate
-        s[i].total = s[i].marks1 + s[i].marks2 + s[i].marks3;
-        s[i].percentage = s[i].total / 3.0;
+        scanf("%s", students[i].name);
+        printf("Roll Number: ");
+        scanf("%d", &students[i].roll_number);
+        printf("Marks: ");
+        scanf("%f", &students[i].marks);
     }
 
-    // Output
-    printf("\n--- Student Results ---\n");
-    for(int i = 0; i < n; i++) {
-        printf("\nStudent %d\n", i+1);
-        printf("Roll: %d\n", s[i].roll);
-        printf("Name: %s\n", s[i].name);
-        printf("Total: %.2f\n", s[i].total);
-        printf("Percentage: %.2f\n", s[i].percentage);
+    printf("\nStudent Details:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Name: %s, Roll Number: %d, Marks: %.2f\n", students[i].name, students[i].roll_number, students[i].marks);
     }
 
     return 0;
